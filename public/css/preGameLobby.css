@@ -1,0 +1,108 @@
+/* 
+COLOR_GREEN: #06bb06
+COLOR_BLUE: #048cff
+COLOR_LIGHT_BLUE: #80c5ff
+COLOR_RED: #ff435c
+06bb06
+*/
+
+.join-container{
+	padding: 2% 10%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.fishgif{
+	width: 25%;
+}
+
+.join-form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px 50px;
+	border-radius: 5%;
+	border: 1px solid black;
+	background: #EDFCFF;
+}
+
+.join-form input{
+	margin: 3px 0;
+	padding: 5px 10px;
+	border-radius: 5%;
+	border: 1px solid black;
+}
+
+.join-btn-grp{
+	display: flex;
+	justify-content: space-between;
+	margin: 20px 0 10px 0;
+}
+
+.join-btn-grp button{
+	margin: 0 10px;
+	white-space: nowrap;
+	padding: 5px 10px;
+	color:#FCFAF8;
+}
+
+.join-btn-grp button:active, .join-btn-grp button:hover{
+	background: #FCFAF8;
+}
+
+.btn-join{
+	background: #FC645F;
+	border:1px solid #FC645F;
+}
+
+.btn-join:active, .btn-join:hover{
+	color: #FC645F;
+}
+
+.btn-create{
+	background: #413D89;
+	border:1px solid #413D89;
+}
+
+.btn-create:active, .btn-create:hover{
+	color: #413D89;
+}
+
+.err-msg{
+	color:#FC645F;
+	margin: 10px 0;
+}
+
+.pre-game-lobby button{
+	background: transparent;
+	margin: 25px 5px;
+	border: 1px solid black;
+
+}
+
+.pre-game-lobby button:active, .pre-game-lobby button:hover{
+	background:#EDFCFF;
+}
+
+#turn-info{
+	padding: 20px 10%;
+}
+
+#turn-info .team-container{
+	color:#EDFCFF;
+}
+
+#lobby-title { margin-top: 10%; margin-bottom: 20px;}
+#ready-container { text-align: center; }
+#ready-container > button { margin: 25px 5px; }
+.readied { background-color: #03a70391 }
+#start-game-button { background-color: #03a70391; }
+#leave-room { background-color: transparent; border: none;}
+#how-to-play { background-color: transparent; border: none; }
+#phrase-input { width: initial; display: initial;}
+#phrase-form { margin: 10px;}
+#phrases-added { width: fit-content; margin: auto; margin-top: 10px; list-style: none }
+#phrases-added > li { text-align: right; margin: 5px 5px; font-size: 1.2em; }
+.remove-phrase { min-width: fit-content; padding: 0px 4px; }
+#phrases-added > li > p { display: inline; margin-right: 3px; }

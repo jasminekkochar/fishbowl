@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Fish Bowl</title>
+        <!-- favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+        <link rel="manifest" href="/favicon_io/site.webmanifest">
+        
+        <!-- stylesheets -->
+        <link href="https://fonts.googleapis.com/css2?family=Playball&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/preGameLobby.css">
+        <link rel="stylesheet" type="text/css" href="css/chat.css">
+        <link rel="stylesheet" type="text/css" href="css/game.css">
+        <link rel="stylesheet" type="text/css" href="css/modal.css">
+    </head>
+    <body>
+        <!-- Fishbowl Join/Create Lobby -->
+        <div class="join-container text-center" id="join-game">
+            <img src="css/fish-bowl.gif" class='fishgif'>
+            <h1 class='title'>Fish Bowl</h1>
+            <div id="join-form-container">
+                <form class="join-form" action="#!">                
+                    <input placeholder="name" class="form-control mb-4" id='join-nickname' type='text' maxlength="15"></input>
+                    <input placeholder="room name" class="form-control mb-4" id='join-room' type='text' maxlength="10"></input>
+                    <input placeholder="password" class="form-control mb-4" id='join-password' type='password' maxlength="20"></input>
+                
+                    <!-- Sign in buttons -->
+                    <div class="join-btn-grp" role="group">
+                        <button type="button" class="btn btn-join btn-primary" id='join-enter'>join game</button>
+                        <button type="button" class="btn btn-create btn-success" id='join-create'>create game</button>
+                    </div>
+                </form>
+            </div>
+            <p class='err-msg' id='error-message'> </p>
+        </div>
+
+        <!-- In Game Elements -->
+        <div id="room-container" style="display: none;"> 
+
+            <!-- Elements present for pre-game lobby AND in-game -->
+            <div class="flex-container" id="general-room-controls">
+                <button id="leave-room">Exit</button>
+                <button id="how-to-play">?</button>
+                <div id='instructions' class='modal'>
+                    <div class="modal-content">
+                        <span id="close-instructions" class="close">&times;</span>
+                        <div> 
+                            <h3>Setup</h3>
+                            <p>Click on <span class='bold'>add phrases</span> to begin adding phrases to the community bowl. Only you will see the phrases you add. There must be at least 10 phrases in the community bowl to begin.</p>
+                            <p>Click on <span class='bold'>ready</span> once you have added your phrases. All players must be ready to begin.</p>
+                            <p>Click on either <span class='bold'>join</span> button to change teams. Each team must have at least 2 players to begin.</p>
+                            <p>Click on <span class='bold'>start</span> to begin the game!</p>
+                            <h3> Rounds </h3>
+                            <p>Fish bowl has 3 rounds of game play where teams will take turns trying to guess as many of the words in the bowl as they can. Turns last 90 seconds and the team with the most phrases guessed at the end of the game wins!</p>
+                            <p>The first round is <span class='bold'>Taboo</span> where the clue giver can describe the phrase using any words <span class='ital'>except the words in the phrase</span>.</p>
+                            <p>The second round is <span class="bold">Charades</span> where the clue giver can act out the phrase. <span class='ital'>No words or sounds are allowed!</span></p>
+                            <p>The third round is <span class="bold">Password</span> where the clue giver can use one word to describe the phrase. Choose wisely!</p>
+                            <h3> Turns </h3>
+                            <p>The game begins with one team being chosen randomly. One player on the team is assigned to be the clue giver (indicated by the "> <") while the rest of the team are guessers.</p>
+                            <p>The clock starts running once the first phrase is drawn during a team's turn and continues to run until time expires.  <span class='bold'>The clue giver changes each time the clock runs out</span> so be ready to draw if you are next up!</p>
+                            <p>If the round ends with time remaining in a team's turn, the team that finished the round completes their turn to begin the next round using the remaining time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--- Title --> 
+            <h1 class='title'>Fish Bowl</h1>
+
+            <!-- Pre-game lobby Elements -->
+            <div id="ready-container" class='pre-game-lobby'>
+                <button id="show-add-phrases">add phrases</button>
+                <button id="ready-button" >ready (0)</button>
+                <button id="start-game-button" class="unclickable">start</button>
+                
+                <div id='add-phrases' class='modal'>
+                    <div class='modal-content'>
+                        <span id="close-add-phrases" class="close">&times;</span>
+                        <form id="phrase-form" action="">
+                            <input class='form-control' id="phrase-input" autocomplete="off" />
+                            <button>add phrase</button>
+                        </form>
+                        <ul id="phrases-added"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="middle in-game">
+                <h2 id='game-score' class='middle'> </h2>
+            </div>
+            <div id="round-info" class='middle in-game'>
+                <h4 class='middle'>
+                    <span id='round-name'></span>
+                </h4>
+                <h2 class='middle'>
+                    <span id="active-team"></span>[<span id="timer"></span>]
+                </h2>
+                <h4 class='middle'>
+                    <span id="phrases-left"></span>
+                </h4>
+            </div>
+
+            <div id="turn-info" class='flex-container'> 
+                <!-- Red Team Roster -->
+                <div class='left-justified team-display'>
+                    <div class='team-banner middle'>
+                        <h3 >red team</h3>
+                        <button id="join-red-team-button" class='btn-small'> join </button>
+                    </div>
+                    <div id="red-team" class="team-container"></div>
+                    <div id="red-phrases-won" class='team-container phrases-won in-game'> </div>
+                </div>
+                
+                <!-- Game Controls -->
+                <div class='middle in-game' id="game-play-container">    
+                    <div id="game-controls-container" class='modal' style='display:none'>
+                        <div class="modal-content">
+                            <button id='show-phrase-button' style='display: none'>draw phrase</button>
+                            <div id="phrase-area">
+                                <h3 id='phrase'></h1>
+                            </div>
+                            <button id='correct-button' style='display:none'>correct</button>
+                            <button id='skip-button' style='display:none'>skip</button>
+                        </div>
+                    </div>
+                    <button id='next-round-button' style='display:none'>next round</button>
+                </div>
+
+                <!-- Blue Team Roster -->
+                <div class='right-justified  team-display'>
+                    <div class='team-banner middle'>
+                        <h3 >blue team</h3>
+                        <button id="join-blue-team-button" class='btn-small'>  join </button>
+                    </div>
+                    <div id="blue-team" class='team-container blue'></div>
+                    <div id="blue-phrases-won" class='team-container phrases-won in-game'> </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="chat" style='display:none'>
+            <ul id="messages"></ul>
+            <form id="chat-form" action="">
+                <input id="chat-input" autocomplete="off" />
+                <button>send</button>
+            </form>
+        </div>
+    </body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script language="javascript" type="text/javascript" src="/js/fishbowl.js"></script>
+</html>

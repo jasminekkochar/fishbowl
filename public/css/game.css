@@ -1,0 +1,25 @@
+#phrase-area { margin: 20px 0px; }
+.team-container > p { text-align: center; }
+.team-container {
+    margin-top: 5px;
+    min-height: 75px;
+    vertical-align: 50px;
+    min-width: 150px;
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 5px;
+}
+#game-play-container { padding-top: 2em; }
+#game-controls-container > .model-content { max-width: 380px; }
+#show-phrase-button, #correct-button, #next-round-button { background: #5cb85c; }
+
+.team-banner > h3 { display: inline }
+.team-banner > form { display: inline }
+.team-banner > button { margin-left: 5px; }
+
+#red-team { background-color: #FC645F; }
+#blue-team { background-color: #413D89; }
+.clue-giver { font-weight: bold; }
+#general-game-controls button:active, #general-game-controls button:active{
+	font-style:bold;
+}
