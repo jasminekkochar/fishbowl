@@ -1,7 +1,7 @@
 class Game {
     constructor() {
         this.roundNames = ['taboo', 'charades', 'password', 'ghost charades'];
-        this.timerAmount = 21;
+        this.timerAmount = 91;
         this.timer = this.timerAmount;
         this.allPhrases = [];
         this.communityBowl = [];

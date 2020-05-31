@@ -20,6 +20,10 @@
 #red-team { background-color: #FC645F; }
 #blue-team { background-color: #413D89; }
 .clue-giver { font-weight: bold; }
-#general-game-controls button:active, #general-game-controls button:active{
+#general-room-controls button:active, #general-game-controls button:active{
 	font-style:bold;
+}
+
+#phrases-added > li button{
+	margin: unset;
 }
