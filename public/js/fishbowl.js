@@ -33,11 +33,16 @@ $(document).ready(function() {
 
     // Pre game lobby
     let $preGameLobbyElements = $(".pre-game-lobby");
+    let $showDurations = $("#show-durations");
+    let $chooseDuration = $("#choose-duration");
+    let $closeDurations = $("#close-durations");
     let $showAddPhrases = $("#show-add-phrases");
     let $addPhrases = $("#add-phrases");
     let $closeAddPhrases = $("#close-add-phrases");
     let $readyButton = $('#ready-button');
     let $startGameButton = $('#start-game-button');
+    let $durationForm = $("#duration-form");
+    let $durationInput = $("#duration-input");
     let $phraseForm = $("#phrase-form");
     let $phraseInput = $("#phrase-input");
 
@@ -87,6 +92,21 @@ $(document).ready(function() {
         $instructions.show(); 
     });
     $closeInstructions.click((e) => { $instructions.hide(); });
+
+    
+    $showDurations.click((e) => { 
+        if (!$showDurations.hasClass('unclickable')) {
+            e.stopPropagation();
+            $chooseDuration.show();
+        }
+    });
+
+    $durationInput.change(() => {
+        let duration = $( "#duration-input option:selected" ).val();
+        selectDuration(duration);
+    });
+
+    $closeDurations.click((e) => {$chooseDuration.hide();});
 
     $showAddPhrases.click((e) => { 
         e.stopPropagation();
@@ -166,7 +186,8 @@ $(document).ready(function() {
     
     function handleLobbyUpdate(roomObj) {
         updateReadyTally(roomObj);
-        updateTeams(roomObj.game, roomObj.players)
+        updateTeams(roomObj.game, roomObj.players);
+        showHostDurations(roomObj);
     }
     
     function updateReadyTally(roomObj) {
@@ -337,6 +358,23 @@ $(document).ready(function() {
 
     // Room Lobby
     ////////////////////////////////////////////////////////////////////////////
+
+    function showHostDurations(roomObj) {
+        if (socket.id === Object.values(roomObj.players)[0].id) {
+            $showDurations.removeClass("unclickable");
+            console.log('host');
+        } else {
+            $showDurations.addClass("unclickable");
+        }
+    }
+
+    function selectDuration(time) {
+        let duration = Number(time);
+        if (!duration){
+            let duration = 91;
+        }
+        socket.emit("durationSelected", duration);
+    }
 
     function addPhrase(e) {
         e.preventDefault(); // prevent the page from reloading

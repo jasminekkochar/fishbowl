@@ -50,12 +50,13 @@
                         <span id="close-instructions" class="close">&times;</span>
                         <div> 
                             <h3>Setup</h3>
+                            <p>Click on <span class='bold'>turn duration</span> to choose how long each team's turn will last. The default is 90 seconds. Note that any player can change the turn duration for the game, so please discuss or assign the decision to only one player.</p>
                             <p>Click on <span class='bold'>add phrases</span> to begin adding phrases to the community bowl. Only you will see the phrases you add. There must be at least 10 phrases in the community bowl to begin.</p>
                             <p>Click on <span class='bold'>ready</span> once you have added your phrases. All players must be ready to begin.</p>
                             <p>Click on either <span class='bold'>join</span> button to change teams. Each team must have at least 2 players to begin.</p>
                             <p>Click on <span class='bold'>start</span> to begin the game!</p>
                             <h3> Rounds </h3>
-                            <p>Fish bowl has 3 rounds of game play where teams will take turns trying to guess as many of the words in the bowl as they can. Turns last 90 seconds and the team with the most phrases guessed at the end of the game wins!</p>
+                            <p>Fish bowl has 3 rounds of game play where teams will take turns trying to guess as many of the words in the bowl as they can. The team with the most phrases guessed at the end of the game wins!</p>
                             <p>The first round is <span class='bold'>Taboo</span> where the clue giver can describe the phrase using any words <span class='ital'>except the words in the phrase</span>.</p>
                             <p>The second round is <span class="bold">Charades</span> where the clue giver can act out the phrase. <span class='ital'>No words or sounds are allowed!</span></p>
                             <p>The third round is <span class="bold">Password</span> where the clue giver can use one word to describe the phrase. Choose wisely!</p>
@@ -73,10 +74,25 @@
 
             <!-- Pre-game lobby Elements -->
             <div id="ready-container" class='pre-game-lobby'>
+                <button id="show-durations" class="unclickable">turn duration</button>
                 <button id="show-add-phrases">add phrases</button>
                 <button id="ready-button" >ready (0)</button>
                 <button id="start-game-button" class="unclickable">start</button>
                 
+                <div id='choose-duration' class='modal'>
+                    <div class='modal-content'>
+                        <span id="close-durations" class="close">&times;</span>
+                        <form id="duration-form" action="">
+                            <select name="duration" id="duration-input">
+                              <option value="46">45 sec.</option>
+                              <option value="61">60 sec.</option>
+                              <option value="91" selected="selected">90 sec.</option>
+                              <option value="121">120 sec.</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+
                 <div id='add-phrases' class='modal'>
                     <div class='modal-content'>
                         <span id="close-add-phrases" class="close">&times;</span>

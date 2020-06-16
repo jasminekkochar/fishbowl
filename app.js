@@ -92,6 +92,7 @@ io.on('connection', function(socket) {
     // In Room Lobby
     ///////////////////////////////////////////////////////////////////////
 
+    socket.on("durationSelected", (duration) => {changeTurnDuration (socket, duration) });
     socket.on("phraseAdded", (phrase) => { addPhraseToGame(socket, phrase) });
     socket.on("phraseRemoved", (phrase) => { removePhraseFromGame(socket, phrase) });
     socket.on("readyGame", (increment) => { readyGame(socket, increment) });
@@ -214,7 +215,7 @@ function joinRoom(socket, data){
 // Leave room function
 // Gets the client that left the room and removes them from the room's player list
 function leaveRoom(socket){
-    let player = getPlayer(socket)     // Get the player that made the request
+    let player = getPlayer(socket);     // Get the player that made the request
     if (!player) return                 // Prevent Crash
     let roomObj = getRoom(socket);   // find the room they were in
     delete PLAYER_LIST[socket.id]           // Delete the player from the player list
@@ -232,7 +233,7 @@ function leaveRoom(socket){
 // Disconnect function
 // Called when a client closes the browser tab
 function socketDisconnect(socket){
-    let player = getPlayer(socket) // Get the player that made the request
+    let player = getPlayer(socket); // Get the player that made the request
     delete SOCKET_LIST[socket.id]       // Delete the client from the socket list
     delete PLAYER_LIST[socket.id]       // Delete the player from the player list
 
@@ -284,6 +285,13 @@ function safelyRemovePlayerFromGame(player, roomObj) {
 
 // Game Setup Helpers
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function changeTurnDuration(socket, duration){
+    let roomObj = getRoom(socket);
+    roomObj.game.changeTimerAmount(duration);
+    socket.emit("changeTurnDuration", {success: true});
+    console.log('Timer Changed' + roomObj.game.timerAmount);
+}
 
 function addPhraseToGame(socket, phrase) {
     let roomObj = getRoom(socket);

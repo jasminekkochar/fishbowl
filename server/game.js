@@ -57,6 +57,11 @@ class Game {
         if (i >= 0) this.redTeam.playerIds.splice(i, 1);
     }
 
+    changeTimerAmount(duration){
+        this.timerAmount = duration;
+        this.timer = duration;
+    }
+
     addPhrase(phrase) {
         this.allPhrases.push(phrase);
     }
