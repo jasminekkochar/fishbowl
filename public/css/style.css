@@ -29,3 +29,17 @@ button.unclickable { opacity: 0.5; }
 	display: flex;
 	justify-content: center;
 }
+
+footer{
+	text-align: right;
+	padding:10px 5%;
+}
+
+footer a{
+	text-decoration: none;
+	color: inherit;
+}
+
+footer a:active, footer a:hover, footer a:focus{
+	font-style: italic;
+}
