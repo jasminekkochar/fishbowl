@@ -33,6 +33,9 @@ button.unclickable { opacity: 0.5; }
 footer{
 	text-align: right;
 	padding:10px 5%;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
 footer a{
