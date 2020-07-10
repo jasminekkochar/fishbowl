@@ -87,8 +87,6 @@ io.on('connection', function(socket) {
     // Room Leaving. Called when client leaves a room
     socket.on('leaveRoom', () => { leaveRoom(socket) });
     // whenever someone disconnects...
-    socket.on('error', (data) => { function(){console.log(data);});
-    // whenever someone disconnects...
     socket.on('disconnect', () => { socketDisconnect(socket) });
 
     // In Room Lobby
