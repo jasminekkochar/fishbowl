@@ -3,7 +3,7 @@ const PORT = process.env.PORT || 3000;
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, {'pingInterval': 2000, 'pingTimeout': 300000});
 const Game = require('./server/game.js');
 
 // listen for requests on port 3000
@@ -86,6 +86,8 @@ io.on('connection', function(socket) {
     socket.on('joinRoom', (data) => { joinRoom(socket, data) });
     // Room Leaving. Called when client leaves a room
     socket.on('leaveRoom', () => { leaveRoom(socket) });
+    // whenever someone disconnects...
+    socket.on('error', (data) => { function(){console.log(data);});
     // whenever someone disconnects...
     socket.on('disconnect', () => { socketDisconnect(socket) });
 

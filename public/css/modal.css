@@ -42,3 +42,13 @@
 
 #add-phrases > .modal-content, #choose-duration > .modal.content { max-width: 380px; }
 #game-controls-container > .modal-content { max-width: 380px; }
+
+@media screen and (max-width:500px){
+    #game-controls-container .modal-content{
+        margin:60% auto;
+    }
+
+    .team-container{
+        min-width:100px;
+    }
+}
